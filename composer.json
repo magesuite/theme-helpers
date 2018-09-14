@@ -1,6 +1,6 @@
 {
   "name": "creativestyle/magesuite-theme-helpers",
-  "description": "Blocks and helpers useful in theme development",
+  "description": "Blocks and helpers required by base theme",
   "type": "magento2-module",
   "homepage": "https://creativestyle.de",
   "license": "OSL-3.0",

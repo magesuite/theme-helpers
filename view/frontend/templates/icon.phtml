@@ -1,0 +1,34 @@
+<?php
+/** @var \MageSuite\ThemeHelpers\Block\Icon $block */
+$altText = $block->getAltText() ?? '';
+$cssClasses = $block->getCssClass();
+$shouldInline = $block->getInlined();
+$shouldLazyLoad = !$shouldInline && $block->getLazyLoaded();
+$iconUrl = $block->getIconUrl();
+
+if ($shouldInline) {
+    $cssClasses .= ' inline-svg';
+}
+
+if ($shouldLazyLoad):
+    ?>
+    <img
+        class="<?= $cssClasses; ?> lazyload"
+        src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+        data-src="<?= $iconUrl; ?>"
+        alt="<?= $altText; ?>"
+    >
+    <noscript>
+        <img
+            class="<?= $cssClasses; ?>"
+            src="<?= $iconUrl; ?>"
+            alt="<?= $altText; ?>"
+        >
+    </noscript>
+<?php else: ?>
+    <img
+        class="<?= $cssClasses; ?>"
+        src="<?= $iconUrl; ?>"
+        alt="<?= $altText; ?>"
+    >
+<?php endif; ?>
