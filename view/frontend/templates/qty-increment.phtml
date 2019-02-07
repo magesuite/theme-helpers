@@ -1,0 +1,41 @@
+<?php
+    $decrementIconUrl = $block->getDecrementIconUrl();
+    $incrementIconUrl = $block->getIncrementIconUrl();
+?>
+<div class="cs-qty-increment <?= $block->getAdditionalCssClasses() ?>">
+    <input type="number" 
+           name="<?= $block->getInputName() ?>" 
+           size="<?= $block->getInputSize() ?? 3 ?>" 
+           class="cs-qty-increment__input <?= $block->getAdditionalInputCssClasses() ?>" 
+           value="<?= $block->getInputInitialValue() ?>"
+           <?= $block->getInputAdditionalParams() ?>
+    >
+
+    <?= $block->getChildHtml(''); ?>
+
+    <?php if($decrementIconUrl && !empty($decrementIconUrl)): ?>
+        <span role="button" tabindex="0" class="cs-qty-increment__button cs-qty-increment__button--decrement" aria-pressed="false">
+            <?= $this->getLayout()
+                 ->createBlock('MageSuite\ThemeHelpers\Block\Icon')
+                 ->setIconUrl($decrementIconUrl)
+                 ->setCssClass('cs-qty-increment__icon cs-qty-increment__icon--decrement')
+                 ->setAltText(__('Decrement product quantity icon'))
+                 ->setInlined(true)
+                 ->setLazyLoaded(true)
+                 ->toHtml(); ?>
+        </span>
+    <?php endif; ?>
+
+    <?php if($incrementIconUrl && !empty($incrementIconUrl)): ?>
+        <span role="button" tabindex="0" class="cs-qty-increment__button cs-qty-increment__button--increment" aria-pressed="false">
+            <?= $this->getLayout()
+                 ->createBlock('MageSuite\ThemeHelpers\Block\Icon')
+                 ->setIconUrl($incrementIconUrl)
+                 ->setCssClass('cs-qty-increment__icon cs-qty-increment__icon--increment')
+                 ->setAltText(__('Increment product quantity icon'))
+                 ->setInlined(true)
+                 ->setLazyLoaded(true)
+                 ->toHtml(); ?>
+        </span>
+    <?php endif; ?>
+</div>
