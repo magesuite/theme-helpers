@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <!--Remove old page title and create custom category page title in content.top container inside main column-->
+        <referenceBlock name="page.main.title" display="false" />
+        <referenceContainer name="content.top">
+            <block class="MageSuite\ThemeHelpers\Block\Category\View\Headline" name="category.page.headline" template="MageSuite_ThemeHelpers::category/headline.phtml">
+                <arguments>
+                    <argument name="show_collection_size" xsi:type="boolean">true</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>
