@@ -5,37 +5,38 @@ namespace MageSuite\ThemeHelpers\Block\Category\View;
 class Headline extends \Magento\Framework\View\Element\Template
 {
     /**
-     * @var \Magento\Framework\Registry
-     */
-    protected $registry;
-    /**
-     * @var \MageSuite\CategoryIcon\Helper\CategoryIcon
-     */
-    protected $categoryIconHelper;
-
-    /**
      * @var \Magento\Framework\View\Page\Title
      */
     protected $pageTitle;
-
+    
     /**
      * @var \Magento\Catalog\Model\Layer\Resolver
      */
     protected $layerResolver;
+    
+    /**
+     * @var \Magento\Framework\Registry
+     */
+    protected $registry;
+    
+    /**
+     * @var \MageSuite\CategoryIcon\Helper\CategoryIcon
+     */
+    protected $categoryIconHelper;
 
     public function __construct(
         \Magento\Backend\Block\Template\Context $context,
         \Magento\Framework\View\Page\Title $pageTitle,
         \Magento\Catalog\Model\Layer\Resolver $layerResolver,
         \Magento\Framework\Registry $registry,
-        \MageSuite\CategoryIcon\Helper\CategoryIcon $categoryIcon,
+        \MageSuite\CategoryIcon\Helper\CategoryIcon $categoryIconHelper,
         array $data = []
     )
     {
-        $this->registry = $registry;
         $this->pageTitle = $pageTitle;
         $this->layerResolver = $layerResolver;
-        $this->categoryIconHelper = $categoryIcon;
+        $this->registry = $registry;
+        $this->categoryIconHelper = $categoryIconHelper;
 
         parent::__construct($context, $data);
     }
