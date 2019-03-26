@@ -5,7 +5,7 @@
     <h1 class="page-title cs-page-title__headline" id="page-title-heading" aria-labelledby="page-title-heading">
         <span class="base" data-ui-id="page-title-wrapper"><?= $block->getHeadline() ?> </span>
         <?php if($block->getShowCollectionSize()): ?>
-            <span class="secondary page-title__span"><?= $block->getCollectionSize() ?></span>
+            <span class="secondary page-title__span">(<?= $block->getCollectionSize() ?>)</span>
         <?php endif; ?>
     </h1>
 </div>
