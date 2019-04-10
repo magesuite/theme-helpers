@@ -3,32 +3,49 @@
 $altText = $block->getAltText() ?? '';
 $cssClasses = $block->getCssClass();
 $shouldInline = $block->getInlined();
-$shouldLazyLoad = !$shouldInline && $block->getLazyLoaded();
-$iconUrl = $block->getIconUrl();
+$shouldLazyLoad = $block->getLazyLoaded() ?? true;
 
-if ($shouldInline) {
-    $cssClasses .= ' inline-svg';
-}
+if ($shouldInline && !$shouldLazyLoad) {
+    $assetHelper = $this->helper('MageSuite\ThemeHelpers\Helper\Asset');
+    $inlineSvg = $assetHelper->getViewFileContents($block->getData('icon_url'));
 
-if ($shouldLazyLoad):
-    ?>
-    <img
-        class="<?= $cssClasses; ?> lazyload"
-        src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
-        data-src="<?= $iconUrl; ?>"
-        alt="<?= $altText; ?>"
-    >
-    <noscript>
+    if (strpos($inlineSvg, 'class="') !== false) {
+        $inlineSvg = str_replace('class="', 'class="' . $cssClasses . ' ', $inlineSvg);
+    } else {
+        $inlineSvg = str_replace('<svg', '<svg class="' . $cssClasses . '"', $inlineSvg);
+    }
+
+    if ($altText) {
+        $inlineSvg = str_replace('<svg', '<svg aria-label="' . $altText . '"', $inlineSvg);
+    }
+
+    echo $inlineSvg;
+} else {
+    $iconUrl = $block->getIconUrl();
+
+    if ($shouldInline) {
+        $cssClasses .= ' inline-svg';
+    }
+    
+    if (!$shouldInline && $shouldLazyLoad): ?>
+        <img
+            class="<?= $cssClasses; ?> lazyload"
+            src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+            data-src="<?= $iconUrl; ?>"
+            alt="<?= $altText; ?>"
+        >
+        <noscript>
+            <img
+                class="<?= $cssClasses; ?>"
+                src="<?= $iconUrl; ?>"
+                alt="<?= $altText; ?>"
+            >
+        </noscript>
+    <?php else: ?>
         <img
             class="<?= $cssClasses; ?>"
             src="<?= $iconUrl; ?>"
             alt="<?= $altText; ?>"
         >
-    </noscript>
-<?php else: ?>
-    <img
-        class="<?= $cssClasses; ?>"
-        src="<?= $iconUrl; ?>"
-        alt="<?= $altText; ?>"
-    >
-<?php endif; ?>
+    <?php endif;
+}
