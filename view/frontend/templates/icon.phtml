@@ -25,11 +25,13 @@ if ($shouldInline && !$shouldLazyLoad) {
 
     if ($shouldInline) {
         $cssClasses .= ' inline-svg';
+    } elseif ($shouldLazyload) {
+        $cssClasses .= ' lazyload';
     }
     
-    if (!$shouldInline && $shouldLazyLoad): ?>
+    if ($shouldLazyLoad || $shouldInline): ?>
         <img
-            class="<?= $cssClasses; ?> lazyload"
+            class="<?= $cssClasses; ?>"
             src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
             data-src="<?= $iconUrl; ?>"
             alt="<?= $altText; ?>"
