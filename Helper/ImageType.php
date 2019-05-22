@@ -2,7 +2,7 @@
 
 namespace MageSuite\ThemeHelpers\Helper;
 
-class ImageType
+class ImageType extends \Magento\Framework\App\Helper\AbstractHelper
 {
     const WEBP_SUPPORTED_EXTENSIONS = ['jpg', 'jpeg', 'png'];
 
