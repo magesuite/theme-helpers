@@ -171,8 +171,7 @@ class ImageType extends \Magento\Framework\App\Helper\AbstractHelper
     public function __construct(
         \Magento\Framework\App\Helper\Context $context,
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
-    )
-    {
+    ) {
         parent::__construct($context);
 
         $this->scopeConfig = $scopeConfig;
