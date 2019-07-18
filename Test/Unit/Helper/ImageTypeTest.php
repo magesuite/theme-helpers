@@ -14,9 +14,21 @@ class ImageTypeTest extends \PHPUnit\Framework\TestCase
      */
     protected $imageType;
 
+    /**
+     * @var \PHPUnit\Framework\MockObject\MockObject|\Magento\Framework\App\Config\ScopeConfigInterface
+     */
+    protected $scopeConfig;
+
     public function setUp() {
         $this->objectManager = \Magento\TestFramework\ObjectManager::getInstance();
-        $this->imageType = $this->objectManager->get(\MageSuite\ThemeHelpers\Helper\ImageType::class);
+
+        $this->scopeConfig = $this->getMockBuilder(\Magento\Framework\App\Config\ScopeConfigInterface::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $this->scopeConfig->method('getValue')->willReturn(true);
+
+        $this->imageType = $this->objectManager->create(\MageSuite\ThemeHelpers\Helper\ImageType::class, ['scopeConfig' => $this->scopeConfig]);
     }
 
     /**
