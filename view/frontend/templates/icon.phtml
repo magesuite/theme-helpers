@@ -4,8 +4,9 @@ $altText = $block->getAltText() ?? '';
 $cssClasses = $block->getCssClass();
 $shouldInline = $block->getInlined();
 $shouldLazyLoad = $block->getLazyLoaded() ?? true;
+$isRemoteUrl = strpos($block->getData('icon_url'), 'http' ) === 0;
 
-if ($shouldInline && !$shouldLazyLoad) {
+if ($shouldInline && !$shouldLazyLoad && !$isRemoteUrl) {
     $assetHelper = $this->helper('MageSuite\ThemeHelpers\Helper\Asset');
     $inlineSvg = $assetHelper->getViewFileContents($block->getData('icon_url'));
 
