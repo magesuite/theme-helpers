@@ -33,7 +33,7 @@ class AssetTest extends \PHPUnit\Framework\TestCase
      */
     public function testItReturnsNullWhenAssetDoesNotExist()
     {
-        $this->getExpectedException(\Magento\Framework\View\Asset\File\NotFoundException::class);
+        $this->expectException(\Magento\Framework\View\Asset\File\NotFoundException::class);
         $this->assetHelper->getViewFileContents('MageSuite_ThemeHelpers::images/non_existing_asset.txt');
     }
 }
