@@ -28,9 +28,6 @@ class AssetTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('asset_contents', $this->assetHelper->getViewFileContents('MageSuite_ThemeHelpers::images/asset.txt'));
     }
 
-    /**
-     * @expectedException \Magento\Framework\View\Asset\File\NotFoundException
-     */
     public function testItReturnsNullWhenAssetDoesNotExist()
     {
         $this->expectException(\Magento\Framework\View\Asset\File\NotFoundException::class);
