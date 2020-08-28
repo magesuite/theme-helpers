@@ -19,7 +19,7 @@ class ImageTypeTest extends \PHPUnit\Framework\TestCase
      */
     protected $scopeConfig;
 
-    public function setUp() {
+    public function setUp(): void {
         $this->objectManager = \Magento\TestFramework\ObjectManager::getInstance();
 
         $this->scopeConfig = $this->getMockBuilder(\Magento\Framework\App\Config\ScopeConfigInterface::class)
