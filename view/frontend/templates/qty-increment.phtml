@@ -1,18 +1,13 @@
 <?php
     $decrementIconUrl = $block->getDecrementIconUrl();
     $incrementIconUrl = $block->getIncrementIconUrl();
-    $uniqueId = 'qty-increment-' . bin2hex(random_bytes(5));
 ?>
 <div class="cs-qty-increment <?= $block->getAdditionalCssClasses() ?>">
-
-    <!-- Hidden label added for better accessablity -->
-    <label for="<?= $uniqueId ?>" class="cs-qty-increment__label"><?= __('Quantity input') ?></label>
-
     <input type="number" 
            name="<?= $block->getInputName() ?>" 
            size="<?= $block->getInputSize() ?? 3 ?>" 
            class="cs-qty-increment__input <?= $block->getAdditionalInputCssClasses() ?>" 
-           id="<?= $uniqueId ?>" 
+           aria-label="<?= __('Quantity') ?>" 
            value="<?= $block->getInputInitialValue() ?>"
            <?= $block->getInputAdditionalParams() ?>
     >
