@@ -1,0 +1,32 @@
+<?php
+$triggerText = $block->getTriggerText();
+$title = $block->getTitle();
+$content = $block->getContent();
+$alignment = $block->getAlignment();
+?>
+<?php if($content): ?>
+    <div class="cs-tooltip<?php if($alignment): ?> cs-tooltip--<?= $alignment;?><?php endif; ?>">
+        <span class="cs-tooltip__trigger">
+            <?php if(!empty($triggerText)): ?>
+                <h5 class="cs-tooltip__trigger-title"><?= $triggerText; ?></h5>
+            <?php endif; ?>
+            <?= $this->getLayout()
+                ->createBlock('MageSuite\ThemeHelpers\Block\Icon')
+                ->setIconUrl('images/icons/tooltip/icon-tooltip-info.svg')
+                ->setCssClass('cs-tooltip__trigger-icon')
+                ->setInlined(true)
+                ->setLazyLoaded(true)
+                ->toHtml();
+            ?>
+        </span>
+        <div class="cs-tooltip__content">
+            <div class="cs-tooltip__content-marker">
+                <?php if(!empty($title)): ?>
+                    <h5 class="cs-tooltip__content-title"><?= $title; ?></h5>
+                <?php endif; ?>
+                <div class="cs-tooltip__content-text"><?= $content; ?></div>
+            </div>
+            <span class="cs-tooltip__close" aria-label="<?= __('Close tooltip'); ?>"></span>
+        </div>
+    </div>
+<?php endif; ?>
