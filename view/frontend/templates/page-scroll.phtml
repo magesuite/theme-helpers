@@ -1,22 +1,13 @@
 <?php
-    $isVisible = $block->getVisible();
+    $additionalCssClasses = $block->getAdditionalCssClasses();
+    $showLabel = $block->getShowLabel();
 ?>
 
-<?php if($isVisible): ?>
-    <?php
-    $wrapperTag = $block->getWrapperTag() ?? 'li';
-    $wrapperClass = $block->getWrapperCssClass();
-    $wrapperClass = $wrapperClass ? sprintf('class="%s"', $wrapperClass) : '';
-
-    $buttonCssClass = $block->getButtonCssClass();
-    $buttonCssClass = $buttonCssClass ? sprintf('class="%s"', $buttonCssClass) : '';
-
-    $label = $block->getLabel();
-    $icon = $block->getChildHtml();
-    ?>
-    <<?= $wrapperTag ?> <?= $wrapperClass ?>>
-        <a href="#" <?= $buttonCssClass ?><?php if($label): ?> title="<?= $label; ?>"<?php endif; ?>>
-            <?= $icon; ?>
-        </a>
-    </<?= $wrapperTag ?>>
-<?php endif; ?>
+<div class="cs-page-scroll <?= $additionalCssClasses; ?>">
+    <div class="cs-page-scroll__button">
+        <span class="cs-page-scroll__text<?php if(!$showLabel): ?> cs-visually-hidden<?php endif; ?>"><?= __('Go to top'); ?></span>
+        <div class="cs-page-scroll__icon-wrapper">
+            <?= $block->getChildHtml(); ?>
+        </div>
+    </div>
+</div>
