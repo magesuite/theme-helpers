@@ -5,6 +5,8 @@ $cssClasses = $block->getCssClass();
 $shouldInline = $block->getInlined();
 $shouldLazyLoad = $block->getLazyLoaded() ?? true;
 $isRemoteUrl = strpos($block->getData('icon_url'), 'http' ) === 0;
+$width = $block->getWidth() ?? null;
+$height = $block->getHeight() ?? null;
 
 if ($shouldInline && !$shouldLazyLoad && !$isRemoteUrl) {
     $assetHelper = $this->helper('MageSuite\ThemeHelpers\Helper\Asset');
@@ -36,6 +38,8 @@ if ($shouldInline && !$shouldLazyLoad && !$isRemoteUrl) {
             src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
             data-src="<?= $iconUrl; ?>"
             alt="<?= $altText; ?>"
+            <?php if ($width && $height) : ?>width="<?= $width ?>"<?php endif; ?>
+            <?php if ($width && $height) : ?>height="<?= $height ?>"<?php endif; ?>
         >
         <noscript>
             <img
@@ -49,6 +53,8 @@ if ($shouldInline && !$shouldLazyLoad && !$isRemoteUrl) {
             class="<?= $cssClasses; ?>"
             src="<?= $iconUrl; ?>"
             alt="<?= $altText; ?>"
+            <?php if ($width && $height) : ?>width="<?= $width ?>"<?php endif; ?>
+            <?php if ($width && $height) : ?>height="<?= $height ?>"<?php endif; ?>
         >
     <?php endif;
 }
