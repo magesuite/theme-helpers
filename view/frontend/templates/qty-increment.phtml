@@ -3,11 +3,11 @@
     $incrementIconUrl = $block->getIncrementIconUrl();
 ?>
 <div class="cs-qty-increment <?= $block->getAdditionalCssClasses() ?>">
-    <input type="number" 
-           name="<?= $block->getInputName() ?>" 
-           size="<?= $block->getInputSize() ?? 3 ?>" 
-           class="cs-qty-increment__input <?= $block->getAdditionalInputCssClasses() ?>" 
-           aria-label="<?= __('Quantity') ?>" 
+    <input type="number"
+           name="<?= $block->getInputName() ?>"
+           size="<?= $block->getInputSize() ?? 3 ?>"
+           class="cs-qty-increment__input <?= $block->getAdditionalInputCssClasses() ?>"
+           aria-label="<?= __('Quantity') ?>"
            value="<?= $block->getInputInitialValue() ?>"
            <?= $block->getInputAdditionalParams() ?>
     >

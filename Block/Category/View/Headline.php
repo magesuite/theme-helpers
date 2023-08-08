@@ -8,17 +8,17 @@ class Headline extends \Magento\Framework\View\Element\Template
      * @var \Magento\Framework\View\Page\Title
      */
     protected $pageTitle;
-    
+
     /**
      * @var \Magento\Catalog\Model\Layer\Resolver
      */
     protected $layerResolver;
-    
+
     /**
      * @var \Magento\Framework\Registry
      */
     protected $registry;
-    
+
     /**
      * @var \MageSuite\CategoryIcon\Helper\CategoryIcon
      */
@@ -48,10 +48,10 @@ class Headline extends \Magento\Framework\View\Element\Template
         if (empty($category)) {
             return null;
         }
-        
+
         return $this->categoryIconHelper->getUrl($category);
     }
-    
+
     public function getHeadline()
     {
         /** @var \Magento\Catalog\Model\Category $category */
