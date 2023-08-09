@@ -17,7 +17,7 @@ class AssetTest extends \PHPUnit\Framework\TestCase
 
     public function testItReturnsContentOfAnAsset():void
     {
-        $this->assertContains('asset_contents', $this->assetHelper->getViewFileContents('MageSuite_ThemeHelpers::images/asset.txt'));
+        $this->assertStringContainsString('asset_contents', $this->assetHelper->getViewFileContents('MageSuite_ThemeHelpers::images/asset.txt'));
     }
 
     public function testItReturnsNullWhenAssetDoesNotExist():void
