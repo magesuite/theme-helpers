@@ -6,11 +6,10 @@ class Icon extends \Magento\Framework\View\Element\Template
 {
     protected $_template = 'MageSuite_ThemeHelpers::icon.phtml';
 
-    public function getIconUrl()
-    {
+    public function getIconUrl() {
         $url = $this->getData('icon_url');
 
-        if (substr($url, 0, 4) == 'http') {
+        if(substr($url, 0, 4) == 'http') {
             return $url;
         }
 

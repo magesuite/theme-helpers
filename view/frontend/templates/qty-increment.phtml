@@ -3,18 +3,18 @@
     $incrementIconUrl = $block->getIncrementIconUrl();
 ?>
 <div class="cs-qty-increment <?= $block->getAdditionalCssClasses() ?>">
-    <input type="number"
-           name="<?= $block->getInputName() ?>"
-           size="<?= $block->getInputSize() ?? 3 ?>"
-           class="cs-qty-increment__input <?= $block->getAdditionalInputCssClasses() ?>"
-           aria-label="<?= __('Quantity') ?>"
+    <input type="number" 
+           name="<?= $block->getInputName() ?>" 
+           size="<?= $block->getInputSize() ?? 3 ?>" 
+           class="cs-qty-increment__input <?= $block->getAdditionalInputCssClasses() ?>" 
+           aria-label="<?= __('Quantity') ?>" 
            value="<?= $block->getInputInitialValue() ?>"
            <?= $block->getInputAdditionalParams() ?>
     >
 
     <?= $block->getChildHtml(''); ?>
 
-    <?php if ($decrementIconUrl && !empty($decrementIconUrl)) : ?>
+    <?php if ($decrementIconUrl && !empty($decrementIconUrl)): ?>
         <span role="button" tabindex="0" class="cs-qty-increment__button cs-qty-increment__button--decrement" aria-pressed="false">
             <?= $this->getLayout()
                  ->createBlock('MageSuite\ThemeHelpers\Block\Icon')
@@ -27,7 +27,7 @@
         </span>
     <?php endif; ?>
 
-    <?php if ($incrementIconUrl && !empty($incrementIconUrl)) : ?>
+    <?php if ($incrementIconUrl && !empty($incrementIconUrl)): ?>
         <span role="button" tabindex="0" class="cs-qty-increment__button cs-qty-increment__button--increment" aria-pressed="false">
             <?= $this->getLayout()
                  ->createBlock('MageSuite\ThemeHelpers\Block\Icon')

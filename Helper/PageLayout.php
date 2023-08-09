@@ -16,13 +16,13 @@ class PageLayout extends \Magento\Framework\App\Helper\AbstractHelper
     public function __construct(
         \Magento\Framework\View\LayoutInterface $layout,
         \Magento\Framework\View\Page\Config $pageConfig
-    ) {
+    )
+    {
         $this->layout = $layout;
         $this->pageConfig = $pageConfig;
     }
 
-    public function getPageLayout()
-    {
+    public function getPageLayout() {
         return $this->pageConfig->getPageLayout() ? $this->pageConfig->getPageLayout() : $this->layout->getUpdate()->getPageLayout();
     }
 }

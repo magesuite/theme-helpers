@@ -4,10 +4,10 @@ $title = $block->getTitle();
 $content = $block->getContent();
 $alignment = $block->getAlignment();
 ?>
-<?php if ($content) : ?>
-    <div class="cs-tooltip<?php if ($alignment) : ?> cs-tooltip--<?= $alignment;?><?php endif; ?>">
+<?php if($content): ?>
+    <div class="cs-tooltip<?php if($alignment): ?> cs-tooltip--<?= $alignment;?><?php endif; ?>">
         <span class="cs-tooltip__trigger">
-            <?php if (!empty($triggerText)) : ?>
+            <?php if(!empty($triggerText)): ?>
                 <h5 class="cs-tooltip__trigger-title"><?= $triggerText; ?></h5>
             <?php endif; ?>
             <?= $this->getLayout()
@@ -21,7 +21,7 @@ $alignment = $block->getAlignment();
         </span>
         <div class="cs-tooltip__content">
             <div class="cs-tooltip__content-marker">
-                <?php if (!empty($title)) : ?>
+                <?php if(!empty($title)): ?>
                     <h5 class="cs-tooltip__content-title"><?= $title; ?></h5>
                 <?php endif; ?>
                 <div class="cs-tooltip__content-text"><?= $content; ?></div>
