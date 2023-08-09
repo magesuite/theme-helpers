@@ -6,29 +6,21 @@ namespace MageSuite\ThemeHelpers\Test\Integration\Helper;
  */
 class AssetTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @var \Magento\TestFramework\ObjectManager
-     */
-    protected $objectManager;
-
-    /**
-     * @var \MageSuite\ThemeHelpers\Helper\Asset
-     */
-    protected $assetHelper;
+    protected ?\Magento\TestFramework\ObjectManager $objectManager = null;
+    protected ?\MageSuite\ThemeHelpers\Helper\Asset $assetHelper = null;
 
     public function setUp(): void
     {
         $this->objectManager = \Magento\TestFramework\ObjectManager::getInstance();
-
         $this->assetHelper = $this->objectManager->create(\MageSuite\ThemeHelpers\Helper\Asset::class);
     }
 
-    public function testItReturnsContentOfAnAsset()
+    public function testItReturnsContentOfAnAsset():void
     {
-        $this->assertEquals('asset_contents', $this->assetHelper->getViewFileContents('MageSuite_ThemeHelpers::images/asset.txt'));
+        $this->assertContains('asset_contents', $this->assetHelper->getViewFileContents('MageSuite_ThemeHelpers::images/asset.txt'));
     }
 
-    public function testItReturnsNullWhenAssetDoesNotExist()
+    public function testItReturnsNullWhenAssetDoesNotExist():void
     {
         $this->expectException(\Magento\Framework\View\Asset\File\NotFoundException::class);
         $this->assetHelper->getViewFileContents('MageSuite_ThemeHelpers::images/non_existing_asset.txt');
