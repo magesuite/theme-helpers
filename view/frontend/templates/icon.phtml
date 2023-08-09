@@ -4,7 +4,7 @@ $altText = $block->getAltText() ?? '';
 $cssClasses = $block->getCssClass();
 $shouldInline = $block->getInlined();
 $shouldLazyLoad = $block->getLazyLoaded() ?? true;
-$isRemoteUrl = strpos($block->getData('icon_url'), 'http' ) === 0;
+$isRemoteUrl = strpos($block->getData('icon_url'), 'http') === 0;
 $width = $block->getWidth() ?? null;
 $height = $block->getHeight() ?? null;
 $iconUrl = $block->getIconUrl();
@@ -32,7 +32,7 @@ if ($iconUrl && $shouldInline && !$shouldLazyLoad && !$isRemoteUrl) {
         $cssClasses .= ' lazyload';
     }
 
-    if ($shouldLazyLoad || $shouldInline): ?>
+    if ($shouldLazyLoad || $shouldInline) : ?>
         <img
             class="<?= $cssClasses; ?>"
             src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
@@ -48,7 +48,7 @@ if ($iconUrl && $shouldInline && !$shouldLazyLoad && !$isRemoteUrl) {
                 alt="<?= $altText; ?>"
             >
         </noscript>
-    <?php else: ?>
+    <?php else : ?>
         <img
             class="<?= $cssClasses; ?>"
             src="<?= $iconUrl; ?>"
