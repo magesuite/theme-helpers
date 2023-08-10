@@ -4,15 +4,13 @@ $altText = $block->getAltText() ?? '';
 $cssClasses = $block->getCssClass();
 $shouldInline = $block->getInlined();
 $shouldLazyLoad = $block->getLazyLoaded() ?? true;
-$isRemoteUrl = strpos($block->getData('icon_url'), 'http') === 0;
+$isRemoteUrl = strpos($block->getData('icon_url'), 'http' ) === 0;
 $width = $block->getWidth() ?? null;
 $height = $block->getHeight() ?? null;
-$iconUrl = $block->getIconUrl();
 
-if ($iconUrl && $shouldInline && !$shouldLazyLoad && !$isRemoteUrl) {
-    /** @var \MageSuite\ThemeHelpers\Helper\Asset $assetHelper */
+if ($shouldInline && !$shouldLazyLoad && !$isRemoteUrl) {
     $assetHelper = $this->helper('MageSuite\ThemeHelpers\Helper\Asset');
-    $inlineSvg = $assetHelper->getViewFileContents($iconUrl);
+    $inlineSvg = $assetHelper->getViewFileContents($block->getData('icon_url'));
 
     if (strpos($inlineSvg, 'class="') !== false) {
         $inlineSvg = str_replace('class="', 'class="' . $cssClasses . ' ', $inlineSvg);
@@ -25,14 +23,16 @@ if ($iconUrl && $shouldInline && !$shouldLazyLoad && !$isRemoteUrl) {
     }
 
     echo $inlineSvg;
-} elseif ($iconUrl) {
+} else {
+    $iconUrl = $block->getIconUrl();
+
     if ($shouldInline) {
         $cssClasses .= ' inline-svg';
     } elseif ($shouldLazyLoad) {
         $cssClasses .= ' lazyload';
     }
 
-    if ($shouldLazyLoad || $shouldInline) : ?>
+    if ($shouldLazyLoad || $shouldInline): ?>
         <img
             class="<?= $cssClasses; ?>"
             src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
@@ -48,7 +48,7 @@ if ($iconUrl && $shouldInline && !$shouldLazyLoad && !$isRemoteUrl) {
                 alt="<?= $altText; ?>"
             >
         </noscript>
-    <?php else : ?>
+    <?php else: ?>
         <img
             class="<?= $cssClasses; ?>"
             src="<?= $iconUrl; ?>"

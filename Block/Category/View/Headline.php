@@ -31,7 +31,8 @@ class Headline extends \Magento\Framework\View\Element\Template
         \Magento\Framework\Registry $registry,
         \MageSuite\CategoryIcon\Helper\CategoryIcon $categoryIconHelper,
         array $data = []
-    ) {
+    )
+    {
         $this->pageTitle = $pageTitle;
         $this->layerResolver = $layerResolver;
         $this->registry = $registry;
@@ -40,8 +41,7 @@ class Headline extends \Magento\Framework\View\Element\Template
         parent::__construct($context, $data);
     }
 
-    public function getIcon()
-    {
+    public function getIcon() {
         /** @var \Magento\Catalog\Model\Category $category */
         $category = $this->registry->registry('current_category');
 
