@@ -31,7 +31,7 @@ if ($shouldInline && !$shouldLazyLoad && !$isRemoteUrl) {
     } elseif ($shouldLazyLoad) {
         $cssClasses .= ' lazyload';
     }
-    
+
     if ($shouldLazyLoad || $shouldInline): ?>
         <img
             class="<?= $cssClasses; ?>"
