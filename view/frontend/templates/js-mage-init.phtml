@@ -1,0 +1,19 @@
+<?php
+/**
+ * @var \Magento\Framework\View\Element\Template $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+
+$selector = $block->getSelector() ?? '*';
+$component = $block->getComponent();
+$jsConfig = $block->getJsConfig();
+?>
+<?php if ($component) : ?>
+<script type="text/x-magento-init">
+{
+    "<?= $escaper->escapeJs($selector) ?>": {
+        "<?= $escaper->escapeJs($component) ?>": <?= /* @noEscape */ $jsConfig ?>
+    }
+}
+</script>
+<?php endif; ?>
