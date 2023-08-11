@@ -14,7 +14,8 @@ class Asset extends \Magento\Framework\App\Helper\AbstractHelper
         $this->assetRepository = $assetRepository;
     }
 
-    public function getViewFileContents($assetPath) {
+    public function getViewFileContents($assetPath)
+    {
         $asset = $this->assetRepository->createAsset($assetPath);
 
         return $asset->getContent();

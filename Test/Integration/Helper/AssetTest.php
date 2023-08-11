@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 namespace MageSuite\ThemeHelpers\Test\Integration\Helper;
 
 /**
@@ -6,20 +8,12 @@ namespace MageSuite\ThemeHelpers\Test\Integration\Helper;
  */
 class AssetTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @var \Magento\TestFramework\ObjectManager
-     */
-    protected $objectManager;
-
-    /**
-     * @var \MageSuite\ThemeHelpers\Helper\Asset
-     */
-    protected $assetHelper;
+    protected ?\Magento\TestFramework\ObjectManager $objectManager = null;
+    protected ?\MageSuite\ThemeHelpers\Helper\Asset $assetHelper = null;
 
     public function setUp(): void
     {
         $this->objectManager = \Magento\TestFramework\ObjectManager::getInstance();
-
         $this->assetHelper = $this->objectManager->create(\MageSuite\ThemeHelpers\Helper\Asset::class);
     }
 
