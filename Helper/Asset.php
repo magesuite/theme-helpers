@@ -2,6 +2,9 @@
 
 namespace MageSuite\ThemeHelpers\Helper;
 
+/**
+ * @deprecated v1.7.1 use assetRepository available in Block class
+ */
 class Asset extends \Magento\Framework\App\Helper\AbstractHelper
 {
     /**
