@@ -9,13 +9,13 @@ class Icon extends \Magento\Framework\View\Element\Template
 
     public function getIconUrl():string
     {
-        $url = $this->getData('icon_url');
+        $iconPath = $this->getIconPath();
 
-        if (substr($url, 0, 4) == 'http') {
-            return $url;
+        if (substr($iconPath, 0, 4) == 'http') {
+            return $iconPath;
         }
 
-        return $this->getViewFileUrl($url);
+        return $this->getViewFileUrl($iconPath);
     }
 
     public function getIconPath():string
