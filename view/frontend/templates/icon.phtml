@@ -26,7 +26,7 @@ if ($iconPath && $shouldInline && !$shouldLazyLoad && !$isRemoteUrl) {
     echo $inlineSvg;
 } else {
     $iconUrl = $block->getIconUrl();
-    
+
     if ($shouldInline) {
         $cssClasses .= ' inline-svg';
     } elseif ($shouldLazyLoad) {
