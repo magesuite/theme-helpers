@@ -2,6 +2,9 @@
 
 namespace MageSuite\ThemeHelpers\Helper;
 
+/**
+ * @deprecated v1.7.1 use assetRepository available in Block class
+ */
 class Asset extends \Magento\Framework\App\Helper\AbstractHelper
 {
     /**
@@ -14,7 +17,8 @@ class Asset extends \Magento\Framework\App\Helper\AbstractHelper
         $this->assetRepository = $assetRepository;
     }
 
-    public function getViewFileContents($assetPath) {
+    public function getViewFileContents($assetPath)
+    {
         $asset = $this->assetRepository->createAsset($assetPath);
 
         return $asset->getContent();

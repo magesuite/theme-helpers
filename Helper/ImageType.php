@@ -179,7 +179,7 @@ class ImageType extends \Magento\Framework\App\Helper\AbstractHelper
 
     public function supportsWebp($path)
     {
-        if(!$this->scopeConfig->getValue(self::WEBP_SUPPORTED_CONFIG_PATH)) {
+        if (!$this->scopeConfig->getValue(self::WEBP_SUPPORTED_CONFIG_PATH)) {
             return false;
         }
 

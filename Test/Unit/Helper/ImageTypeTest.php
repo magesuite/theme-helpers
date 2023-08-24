@@ -19,7 +19,8 @@ class ImageTypeTest extends \PHPUnit\Framework\TestCase
      */
     protected $scopeConfig;
 
-    public function setUp(): void {
+    public function setUp(): void
+    {
         $this->objectManager = \Magento\TestFramework\ObjectManager::getInstance();
 
         $this->scopeConfig = $this->getMockBuilder(\Magento\Framework\App\Config\ScopeConfigInterface::class)
@@ -34,11 +35,13 @@ class ImageTypeTest extends \PHPUnit\Framework\TestCase
     /**
      * @dataProvider getWebpUrls
      */
-    public function testItResolvesWebpSupport($path, $expectedResult) {
+    public function testItResolvesWebpSupport($path, $expectedResult)
+    {
         $this->assertEquals($expectedResult, $this->imageType->supportsWebp($path));
     }
 
-    public static function getWebpUrls() {
+    public static function getWebpUrls()
+    {
         return [
             ['/var/images/image.jpg', true],
             ['https://www.example.com/image.jpg', true],
@@ -52,11 +55,13 @@ class ImageTypeTest extends \PHPUnit\Framework\TestCase
     /**
      * @dataProvider getMimeTypeUrls
      */
-    public function testItResolvesMimeTypes($path, $expectedResult) {
+    public function testItResolvesMimeTypes($path, $expectedResult)
+    {
         $this->assertEquals($expectedResult, $this->imageType->getMimeType($path));
     }
 
-    public static function getMimeTypeUrls() {
+    public static function getMimeTypeUrls()
+    {
         return [
             ['/var/images/image.jpg', 'image/jpeg'],
             ['https://www.example.com/image.jpg', 'image/jpeg'],
