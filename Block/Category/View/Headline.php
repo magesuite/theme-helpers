@@ -4,25 +4,15 @@ namespace MageSuite\ThemeHelpers\Block\Category\View;
 
 class Headline extends \Magento\Framework\View\Element\Template
 {
-    /**
-     * @var \Magento\Framework\View\Page\Title
-     */
-    protected $pageTitle;
+    public const DEFAULT_HTML_TAG = 'h1';
 
-    /**
-     * @var \Magento\Catalog\Model\Layer\Resolver
-     */
-    protected $layerResolver;
+    public const ATTRIBUTE_HEADLINE_HTML_TAG = 'headline_html_tag';
+    public const ATTRIBUTE_HIDE_HEADLINE = 'hide_headline';
 
-    /**
-     * @var \Magento\Framework\Registry
-     */
-    protected $registry;
-
-    /**
-     * @var \MageSuite\CategoryIcon\Helper\CategoryIcon
-     */
-    protected $categoryIconHelper;
+    protected \Magento\Framework\View\Page\Title $pageTitle;
+    protected \Magento\Catalog\Model\Layer\Resolver $layerResolver;
+    protected \Magento\Framework\Registry $registry;
+    protected \MageSuite\CategoryIcon\Helper\CategoryIcon $categoryIconHelper;
 
     public function __construct(
         \Magento\Backend\Block\Template\Context $context,
@@ -40,7 +30,10 @@ class Headline extends \Magento\Framework\View\Element\Template
         parent::__construct($context, $data);
     }
 
-    public function getIcon()
+    /**
+     * @throws \Magento\Framework\Exception\LocalizedException
+     */
+    public function getIcon(): ?string
     {
         /** @var \Magento\Catalog\Model\Category $category */
         $category = $this->registry->registry('current_category');
@@ -52,7 +45,15 @@ class Headline extends \Magento\Framework\View\Element\Template
         return $this->categoryIconHelper->getUrl($category);
     }
 
-    public function getHeadline()
+    public function shouldHeadlineBeHidden(): bool
+    {
+        /** @var \Magento\Catalog\Model\Category $category */
+        $category = $this->registry->registry('current_category');
+
+        return (bool)$category->getData(self::ATTRIBUTE_HIDE_HEADLINE);
+    }
+
+    public function getHeadline(): string
     {
         /** @var \Magento\Catalog\Model\Category $category */
         $category = $this->registry->registry('current_category');
@@ -64,7 +65,15 @@ class Headline extends \Magento\Framework\View\Element\Template
         }
     }
 
-    public function getCollectionSize()
+    public function getHeadlineHtmlTag(): string
+    {
+        /** @var \Magento\Catalog\Model\Category $category */
+        $category = $this->registry->registry('current_category');
+
+        return $category->getData(self::ATTRIBUTE_HEADLINE_HTML_TAG) ?? self::DEFAULT_HTML_TAG;
+    }
+
+    public function getCollectionSize(): int
     {
         $layer = $this->layerResolver->get();
         $collection = $layer->getProductCollection();
