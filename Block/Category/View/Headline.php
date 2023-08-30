@@ -50,6 +50,10 @@ class Headline extends \Magento\Framework\View\Element\Template
         /** @var \Magento\Catalog\Model\Category $category */
         $category = $this->registry->registry('current_category');
 
+        if (empty($category)) {
+            return false;
+        }
+
         return (bool)$category->getData(self::ATTRIBUTE_HIDE_HEADLINE);
     }
 
@@ -69,6 +73,10 @@ class Headline extends \Magento\Framework\View\Element\Template
     {
         /** @var \Magento\Catalog\Model\Category $category */
         $category = $this->registry->registry('current_category');
+
+        if (empty($category)) {
+            return self::DEFAULT_HTML_TAG;
+        }
 
         return $category->getData(self::ATTRIBUTE_HEADLINE_HTML_TAG) ?? self::DEFAULT_HTML_TAG;
     }
