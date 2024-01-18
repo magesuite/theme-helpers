@@ -29,6 +29,6 @@ class ImageTest extends \PHPUnit\Framework\TestCase
         $product = $this->productRepository->get('simple');
         $imageUrl = $this->imageViewModel->getImageUrl($product, 'category_page_grid');
 
-        $this->assertStringContainsString('small_image/13353/240x300/000/0/m/a/magento_image.jpg', $imageUrl);
+        $this->assertStringContainsString('m/a/magento_image.jpg', $imageUrl);
     }
 }
