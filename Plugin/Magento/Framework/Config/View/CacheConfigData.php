@@ -7,14 +7,17 @@ class CacheConfigData
 {
     protected \Magento\Framework\Serialize\SerializerInterface $serializer;
     protected \Magento\Framework\Config\CacheInterface $cache;
+    protected \Magento\Framework\View\Design\Theme\ResolverInterface $themeResolver;
     protected array $data = [];
 
     public function __construct(
         \Magento\Framework\Config\CacheInterface $cache,
-        \Magento\Framework\Serialize\SerializerInterface $serializer
+        \Magento\Framework\Serialize\SerializerInterface $serializer,
+        \Magento\Framework\View\Design\Theme\ResolverInterface $themeResolver
     ) {
         $this->cache = $cache;
         $this->serializer = $serializer;
+        $this->themeResolver = $themeResolver;
     }
 
     public function aroundRead(\Magento\Framework\Config\View $subject, callable $proceed, $scope = null)
@@ -25,7 +28,8 @@ class CacheConfigData
             return $this->data[$targetScope];
         }
 
-        $cacheKey = '\Magento\Framework\Config\View::read_' . $targetScope;
+        $themeId = $this->themeResolver->get()->getId();
+        $cacheKey = sprintf('Magento\Framework\Config\View::read_%s_%s', $targetScope, $themeId);
 
         if ($value = $this->cache->load($cacheKey)) {
             $this->data[$targetScope] = $this->serializer->unserialize($value);
