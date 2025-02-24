@@ -1,6 +1,8 @@
 <?php
-/** @var \MageSuite\ThemeHelpers\Block\Icon $block */
-
+/** 
+ * @var \MageSuite\ThemeHelpers\Block\Icon $block 
+ * @var \Magento\Framework\Escaper $escaper
+ */
 $altText = $block->getAltText() ?? '';
 $cssClasses = $block->getCssClass();
 $shouldInline = $block->getInlined();
@@ -21,9 +23,12 @@ if ($iconPath && $shouldInline && !$shouldLazyLoad && !$isRemoteUrl) {
 
     if ($altText) {
         $inlineSvg = str_replace('<svg', '<svg aria-label="' . $altText . '"', $inlineSvg);
+        $inlineSvg = str_replace('<svg', '<svg role="img"', $inlineSvg);
+    } else {
+        $inlineSvg = str_replace('<svg', '<svg aria-hidden="true"', $inlineSvg);
     }
 
-    echo $inlineSvg;
+    /* @noEscape */ echo $inlineSvg;
 } else {
     $iconUrl = $block->getIconUrl();
 
@@ -37,25 +42,27 @@ if ($iconPath && $shouldInline && !$shouldLazyLoad && !$isRemoteUrl) {
         <img
             class="<?= $cssClasses; ?>"
             src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
-            data-src="<?= $iconUrl; ?>"
-            alt="<?= $altText; ?>"
-            <?php if ($width && $height) : ?>width="<?= $width ?>"<?php endif; ?>
-            <?php if ($width && $height) : ?>height="<?= $height ?>"<?php endif; ?>
+            data-src="<?= $escaper->escapeUrl($iconUrl) ?>"
+            alt="<?= $escaper->escapeHtmlAttr($altText) ?>"
+            <?php if ($width && $height) : ?>width="<?= $escaper->escapeHtmlAttr($width) ?>"<?php endif; ?>
+            <?php if ($width && $height) : ?>height="<?= $escaper->escapeHtmlAttr($height) ?>"<?php endif; ?>
         >
         <noscript>
             <img
-                class="<?= $cssClasses; ?>"
-                src="<?= $iconUrl; ?>"
-                alt="<?= $altText; ?>"
+                class="<?= $escaper->escapeHtmlAttr($cssClasses) ?>"
+                src="<?= $escaper->escapeUrl($iconUrl); ?>"
+                alt="<?= $escaper->escapeHtmlAttr($altText) ?>"
+                <?php if ($width && $height) : ?>width="<?= $escaper->escapeHtmlAttr($width) ?>"<?php endif; ?>
+                <?php if ($width && $height) : ?>height="<?= $escaper->escapeHtmlAttr($height) ?>"<?php endif; ?>
             >
         </noscript>
     <?php else : ?>
         <img
-            class="<?= $cssClasses; ?>"
-            src="<?= $iconUrl; ?>"
-            alt="<?= $altText; ?>"
-            <?php if ($width && $height) : ?>width="<?= $width ?>"<?php endif; ?>
-            <?php if ($width && $height) : ?>height="<?= $height ?>"<?php endif; ?>
+            class="<?= $escaper->escapeHtmlAttr($cssClasses) ?>"
+            src="<?= $escaper->escapeUrl($iconUrl) ?>"
+            alt="<?= $escaper->escapeHtmlAttr($altText) ?>"
+            <?php if ($width && $height) : ?>width="<?= $escaper->escapeHtmlAttr($width) ?>"<?php endif; ?>
+            <?php if ($width && $height) : ?>height="<?= $escaper->escapeHtmlAttr($height) ?>"<?php endif; ?>
         >
     <?php endif;
 }
