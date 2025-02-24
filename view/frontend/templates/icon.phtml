@@ -22,8 +22,7 @@ if ($iconPath && $shouldInline && !$shouldLazyLoad && !$isRemoteUrl) {
     }
 
     if ($altText) {
-        $inlineSvg = str_replace('<svg', '<svg aria-label="' . $altText . '"', $inlineSvg);
-        $inlineSvg = str_replace('<svg', '<svg role="img"', $inlineSvg);
+        $inlineSvg = str_replace('<svg', '<svg role="img" aria-label="' . $altText . '"', $inlineSvg);
     } else {
         $inlineSvg = str_replace('<svg', '<svg aria-hidden="true"', $inlineSvg);
     }
