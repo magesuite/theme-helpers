@@ -14,6 +14,18 @@
                     <overview>Add JS helper to wait for an element appereance using MutationObserver</overview>
                 </entry>
             </tag>
+            <tag version="1.11.0" date="2025-02-27">
+                <entry>
+                    <type>FEATURE</type>
+                    <overview>[ACCESSIBILITY] Enhance Icon component to support accessibility</overview>
+                </entry>
+            </tag>
+            <tag version="1.11.1" date="2025-02-27">
+                <entry>
+                    <type>FEATURE</type>
+                    <overview>[ACCESSIBILITY] Quantity-increment template adjustments</overview>
+                </entry>
+            </tag>
         </changelog>
     </module>
 </config>
