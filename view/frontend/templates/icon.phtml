@@ -46,15 +46,6 @@ if ($iconPath && $shouldInline && !$shouldLazyLoad && !$isRemoteUrl) {
             <?php if ($width && $height) : ?>width="<?= $escaper->escapeHtmlAttr($width) ?>"<?php endif; ?>
             <?php if ($width && $height) : ?>height="<?= $escaper->escapeHtmlAttr($height) ?>"<?php endif; ?>
         >
-        <noscript>
-            <img
-                class="<?= $escaper->escapeHtmlAttr($cssClasses) ?>"
-                src="<?= $escaper->escapeUrl($iconUrl); ?>"
-                alt="<?= $escaper->escapeHtmlAttr($altText) ?>"
-                <?php if ($width && $height) : ?>width="<?= $escaper->escapeHtmlAttr($width) ?>"<?php endif; ?>
-                <?php if ($width && $height) : ?>height="<?= $escaper->escapeHtmlAttr($height) ?>"<?php endif; ?>
-            >
-        </noscript>
     <?php else : ?>
         <img
             class="<?= $escaper->escapeHtmlAttr($cssClasses) ?>"
