@@ -26,6 +26,13 @@
                     <overview>[ACCESSIBILITY] Quantity-increment template adjustments</overview>
                 </entry>
             </tag>
+            <tag version="1.11.3" date="2025-05-28">
+                <entry>
+                    <type>FEATURE</type>
+                    <overview>A11Y - adjust qty increment label</overview>
+                    <ticket_id>RK-1867</ticket_id>
+                </entry>
+            </tag>
         </changelog>
     </module>
 </config>

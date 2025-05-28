@@ -7,7 +7,7 @@
            name="<?= $block->getInputName() ?>"
            size="<?= $block->getInputSize() ?? 3 ?>"
            class="cs-qty-increment__input <?= $block->getAdditionalInputCssClasses() ?>"
-           aria-label="<?= __('Cart Item Quantity') ?>"
+           aria-label="<?= $block->getLabel() ?>"
            value="<?= $block->getInputInitialValue() ?>"
            <?= $block->getInputAdditionalParams() ?>
     >
@@ -16,9 +16,9 @@
 
     <?php if ($decrementIconUrl && !empty($decrementIconUrl)) : ?>
         <span role="button" tabindex="0" class="cs-qty-increment__button cs-qty-increment__button--decrement" aria-pressed="false">
-            <?= $this->getLayout() 
-                 ->createBlock('MageSuite\ThemeHelpers\Block\Icon') 
-                 ->setIconUrl($decrementIconUrl) 
+            <?= $this->getLayout()
+                 ->createBlock('MageSuite\ThemeHelpers\Block\Icon')
+                 ->setIconUrl($decrementIconUrl)
                  ->setCssClass('cs-qty-increment__icon cs-qty-increment__icon--decrement')
                  ->setAltText(__('Decrement product quantity icon'))
                  ->setInlined(true)
