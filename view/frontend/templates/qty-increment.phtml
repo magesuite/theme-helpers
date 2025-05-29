@@ -16,11 +16,11 @@
 
     <?php if ($decrementIconUrl && !empty($decrementIconUrl)) : ?>
         <span role="button" tabindex="0" class="cs-qty-increment__button cs-qty-increment__button--decrement" aria-pressed="false">
-            <?= $this->getLayout() 
-                 ->createBlock('MageSuite\ThemeHelpers\Block\Icon') 
-                 ->setIconUrl($decrementIconUrl) 
+            <?= $this->getLayout()
+                 ->createBlock('MageSuite\ThemeHelpers\Block\Icon')
+                 ->setIconUrl($decrementIconUrl)
                  ->setCssClass('cs-qty-increment__icon cs-qty-increment__icon--decrement')
-                 ->setAltText(__('Decrement product quantity icon'))
+                 ->setAltText(__('Decrease quantity by one'))
                  ->setInlined(true)
                  ->setLazyLoaded(false)
                  ->toHtml(); ?>
@@ -33,7 +33,7 @@
                  ->createBlock('MageSuite\ThemeHelpers\Block\Icon')
                  ->setIconUrl($incrementIconUrl)
                  ->setCssClass('cs-qty-increment__icon cs-qty-increment__icon--increment')
-                 ->setAltText(__('Increment product quantity icon'))
+                 ->setAltText(__('Increase quantity by one'))
                  ->setInlined(true)
                  ->setLazyLoaded(false)
                  ->toHtml(); ?>
