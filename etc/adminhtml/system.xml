@@ -11,5 +11,18 @@
                 </field>
             </group>
         </section>
+        <section id="accessibility" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Accessibility</label>
+            <tab>magesuite</tab>
+            <resource>MageSuite_ThemeHelpers::accessibility</resource>
+            <group id="accessibility_settings" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Skip links</label>
+                <field id="skip_links_enabled" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Bypass links enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>If enabled skip links bar will be shown on firt tab press the top of the page</comment>
+                </field>
+            </group>
+        </section>
     </system>
 </config>

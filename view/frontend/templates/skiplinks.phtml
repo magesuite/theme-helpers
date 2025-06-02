@@ -1,0 +1,32 @@
+<?php
+/**
+ * Skiplinks component
+ *
+ * Purpose:
+ * - Renders a list of links allowing users to quickly navigate to selected sections of the page
+ * (so-called skip links) using the Tab key for keyboard navigation.
+ *
+ * Usage:
+ * - The component can be enabled or disabled from the admin panel.
+ * - Expects an array $skipLinks, where each element should contain 'element_id' (the target section id) and 'text' (the link label).
+ * - CSS classes for the wrapper and links can be passed from layout XML.
+ * - The component is placed at the beginning of the page structure to be easily accessible for users.
+ */
+
+$componentCssClass = $block->getData('skip_links_component_class');
+$linkCssClass = $block->getData('skip_links_link_class');
+$skipLinks = $block->getData('skip_links_links');
+?>
+<div class="<?= $escaper->escapeHtmlAttr($componentCssClass) ?>" tabindex="-1">
+    <?php if (!empty($skipLinks)): ?>
+        <div class="cs-skip-links__links">
+            <?php foreach ($skipLinks as $link): ?>
+                <?php if (isset($link['element_id'], $link['text'])): ?>
+                    <a href="#<?= $escaper->escapeHtmlAttr($link['element_id']) ?>" class="<?= $linkCssClass ?>">
+                        <?= $escaper->escapeHtml($link['text']) ?>
+                    </a>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
+</div>

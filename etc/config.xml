@@ -6,5 +6,10 @@
                 <webp_supported>0</webp_supported>
             </image_urls_processing>
         </web>
+        <accessibility>
+            <accessibility_settings>
+                <skip_links_enabled>0</skip_links_enabled>
+            </accessibility_settings>
+        </accessibility>
     </default>
 </config>
