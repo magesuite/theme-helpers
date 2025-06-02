@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="after.body.start">
+            <block name="skip.links" template="MageSuite_ThemeHelpers::skiplinks.phtml" before="-" ifconfig="accessibility/accessibility_settings/skip_links_enabled">
+                <arguments>
+                    <argument name="skip_links_component_class" xsi:type="string">cs-skip-links</argument>
+                    <argument name="skip_links_link_class" xsi:type="string">cs-skip-links__link</argument>
+                    <argument name="skip_links_links" xsi:type="array">
+                        <item name="link_1" xsi:type="array">
+                            <item name="element_id" xsi:type="string">maincontent</item>
+                            <item name="text" xsi:type="string" translate="true">Skip to main content</item>
+                        </item>
+                        <item name="link_2" xsi:type="array">
+                            <item name="element_id" xsi:type="string">search</item>
+                            <item name="text" xsi:type="string" translate="true">Skip to search</item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>
