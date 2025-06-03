@@ -7,7 +7,7 @@
            name="<?= $block->getInputName() ?>"
            size="<?= $block->getInputSize() ?? 3 ?>"
            class="cs-qty-increment__input <?= $block->getAdditionalInputCssClasses() ?>"
-           aria-label="<?= __('Cart Item Quantity') ?>"
+           aria-label="<?= $block->getLabel() ?>"
            value="<?= $block->getInputInitialValue() ?>"
            <?= $block->getInputAdditionalParams() ?>
     >
