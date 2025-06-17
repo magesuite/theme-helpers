@@ -6,7 +6,7 @@ define([
 ], function (wrapper) {
     'use strict';
 
-    const skipLinkElement = document.querySelector('.cs-skip-links__link');
+    const skipLinkElement = document.body.classList.contains('checkout-index-index') ? document.querySelector('.cs-skip-links__link') : null;
 
     return function (stepNavigator) {
         if (skipLinkElement) {
