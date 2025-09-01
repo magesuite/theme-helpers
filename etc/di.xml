@@ -9,4 +9,8 @@
             </argument>
         </arguments>
     </type>
+
+    <type name="Magento\Framework\Mail\Template\TransportBuilder">
+        <plugin name="add_locale_variable_to_email_templates" type="MageSuite\ThemeHelpers\Plugin\Magento\Framework\Mail\Template\TransportBuilder\AddLocaleVariableToEmailTemplates" sortOrder="10"/>
+    </type>
 </config>
