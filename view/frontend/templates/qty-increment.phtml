@@ -2,21 +2,22 @@
     $decrementIconUrl = $block->getDecrementIconUrl();
     $incrementIconUrl = $block->getIncrementIconUrl();
 ?>
-<div class="cs-qty-increment <?= $block->getAdditionalCssClasses() ?>">
+<div class="cs-qty-increment <?= $escaper->escapeHtmlAttr($block->getAdditionalCssClasses()) ?>">
     <input type="number"
-           name="<?= $block->getInputName() ?>"
-           class="cs-qty-increment__input <?= $block->getAdditionalInputCssClasses() ?>"
-           aria-label="<?= $block->getLabel() ?>"
-           value="<?= $block->getInputInitialValue() ?>"
-           <?= $block->getInputAdditionalParams() ?>
+           name="<?= $escaper->escapeHtmlAttr($block->getInputName()); ?>"
+           class="cs-qty-increment__input <?= $escaper->escapeHtmlAttr($block->getAdditionalInputCssClasses()); ?>"
+           aria-label="<?= $escaper->escapeHtmlAttr($block->getLabel()); ?>"
+           value="<?= $escaper->escapeHtmlAttr($block->getInputInitialValue()); ?>"
+           pattern="^[0-9]+$"
+           <?= /* @noEscape */ $block->getInputAdditionalParams(); ?> 
     >
 
-    <?= $block->getChildHtml(''); ?>
+    <?= /* @noEscape */ $block->getChildHtml(''); ?>
 
     <?php if ($decrementIconUrl && !empty($decrementIconUrl)) : ?>
         <span role="button" tabindex="0" class="cs-qty-increment__button cs-qty-increment__button--decrement" aria-pressed="false">
-            <?= $this->getLayout()
-                 ->createBlock('MageSuite\ThemeHelpers\Block\Icon')
+            <?= /* @noEscape */ $block->getLayout()
+                 ->createBlock(\MageSuite\ThemeHelpers\Block\Icon::class)
                  ->setIconUrl($decrementIconUrl)
                  ->setCssClass('cs-qty-increment__icon cs-qty-increment__icon--decrement')
                  ->setAltText(__('Decrease quantity by one'))
@@ -28,8 +29,8 @@
 
     <?php if ($incrementIconUrl && !empty($incrementIconUrl)) : ?>
         <span role="button" tabindex="0" class="cs-qty-increment__button cs-qty-increment__button--increment" aria-pressed="false">
-            <?= $this->getLayout()
-                 ->createBlock('MageSuite\ThemeHelpers\Block\Icon')
+            <?= /* @noEscape */ $block->getLayout()
+                 ->createBlock(\MageSuite\ThemeHelpers\Block\Icon::class)
                  ->setIconUrl($incrementIconUrl)
                  ->setCssClass('cs-qty-increment__icon cs-qty-increment__icon--increment')
                  ->setAltText(__('Increase quantity by one'))
