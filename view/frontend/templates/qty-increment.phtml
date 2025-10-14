@@ -8,6 +8,7 @@
            class="cs-qty-increment__input <?= $escaper->escapeHtmlAttr($block->getAdditionalInputCssClasses()); ?>"
            aria-label="<?= $escaper->escapeHtmlAttr($block->getLabel()); ?>"
            value="<?= $escaper->escapeHtmlAttr($block->getInputInitialValue()); ?>"
+           title="<?= $escaper->escapeHtmlAttr($block->getTitle()); ?>"
            pattern="^[0-9]+$"
            <?= /* @noEscape */ $block->getInputAdditionalParams(); ?> 
     >
