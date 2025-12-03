@@ -10,6 +10,8 @@ class FieldsValidation
     protected const FIRSTNAME_MAX_LENGTH = 255;
     protected const LASTNAME_MAX_LENGTH = 255;
     protected const CITY_MAX_LENGTH = 100;
+    protected const STREET_MAX_LENGTH = 255;
+    protected const TELEPHONE_MAX_LENGTH = 50;
 
     public function __construct(
         protected \Magento\Framework\Stdlib\ArrayManager $arrayManager,
@@ -77,6 +79,18 @@ class FieldsValidation
         if (isset($fieldset['city'])) {
             $fieldset['city']['validation']['validate-city'] = true;
             $fieldset['city']['config']['maxlength'] = self::CITY_MAX_LENGTH;
+        }
+
+        if (isset($fieldset['street']['children'])) {
+            foreach ($fieldset['street']['children'] as $index => $streetLine) {
+                $fieldset['street']['children'][$index]['validation']['validate-street'] = true;
+                $fieldset['street']['children'][$index]['maxlength'] = self::STREET_MAX_LENGTH;
+            }
+        }
+
+        if (isset($fieldset['telephone'])) {
+            $fieldset['telephone']['validation']['validate-phone'] = true;
+            $fieldset['telephone']['config']['maxlength'] = self::TELEPHONE_MAX_LENGTH;
         }
 
         return $fieldset;
