@@ -67,29 +67,44 @@ class FieldsValidation
     protected function addAddressFieldsetValidation(array $fieldset): array
     {
         if (isset($fieldset['firstname'])) {
-            $fieldset['firstname']['validation']['validate-name'] = true;
+            $fieldset['firstname']['validation'] = [
+                'validate-name' => true,
+                'max_text_length' => self::FIRSTNAME_MAX_LENGTH,
+            ];
             $fieldset['firstname']['config']['maxlength'] = self::FIRSTNAME_MAX_LENGTH;
         }
 
         if (isset($fieldset['lastname'])) {
-            $fieldset['lastname']['validation']['validate-name'] = true;
+            $fieldset['lastname']['validation'] = [
+                'validate-name' => true,
+                'max_text_length' => self::LASTNAME_MAX_LENGTH,
+            ];
             $fieldset['lastname']['config']['maxlength'] = self::LASTNAME_MAX_LENGTH;
         }
 
         if (isset($fieldset['city'])) {
-            $fieldset['city']['validation']['validate-city'] = true;
+            $fieldset['city']['validation'] = [
+                'validate-city' => true,
+                'max_text_length' => self::CITY_MAX_LENGTH,
+            ];
             $fieldset['city']['config']['maxlength'] = self::CITY_MAX_LENGTH;
         }
 
         if (isset($fieldset['street']['children'])) {
             foreach ($fieldset['street']['children'] as $index => $streetLine) {
-                $fieldset['street']['children'][$index]['validation']['validate-street'] = true;
+                $fieldset['street']['children'][$index]['validation'] = [
+                    'validate-street' => true,
+                    'max_text_length' => self::STREET_MAX_LENGTH,
+                ];
                 $fieldset['street']['children'][$index]['maxlength'] = self::STREET_MAX_LENGTH;
             }
         }
 
         if (isset($fieldset['telephone'])) {
-            $fieldset['telephone']['validation']['validate-phone'] = true;
+            $fieldset['telephone']['validation'] = [
+                'validate-phone' => true,
+                'max_text_length' => self::TELEPHONE_MAX_LENGTH,
+            ];
             $fieldset['telephone']['config']['maxlength'] = self::TELEPHONE_MAX_LENGTH;
         }
 
