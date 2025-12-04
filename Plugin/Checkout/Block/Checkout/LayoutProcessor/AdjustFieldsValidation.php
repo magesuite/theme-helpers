@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace MageSuite\ThemeHelpers\Plugin\Checkout\Block\Checkout\LayoutProcessor;
 
-class FieldsValidation
+class AdjustFieldsValidation
 {
     protected const BILLING_FIELD_PATH_FORMAT = '%s/%s/%s';
     protected const FIRSTNAME_MAX_LENGTH = 255;
@@ -66,48 +66,68 @@ class FieldsValidation
 
     protected function addAddressFieldsetValidation(array $fieldset): array
     {
-        if (isset($fieldset['firstname'])) {
-            $fieldset['firstname']['validation'] = [
-                'validate-name' => true,
-                'max_text_length' => self::FIRSTNAME_MAX_LENGTH,
-            ];
-            $fieldset['firstname']['config']['maxlength'] = self::FIRSTNAME_MAX_LENGTH;
-        }
+        $fieldConfigurations = $this->getFieldValidationConfiguration();
 
-        if (isset($fieldset['lastname'])) {
-            $fieldset['lastname']['validation'] = [
-                'validate-name' => true,
-                'max_text_length' => self::LASTNAME_MAX_LENGTH,
-            ];
-            $fieldset['lastname']['config']['maxlength'] = self::LASTNAME_MAX_LENGTH;
-        }
-
-        if (isset($fieldset['city'])) {
-            $fieldset['city']['validation'] = [
-                'validate-city' => true,
-                'max_text_length' => self::CITY_MAX_LENGTH,
-            ];
-            $fieldset['city']['config']['maxlength'] = self::CITY_MAX_LENGTH;
-        }
-
-        if (isset($fieldset['street']['children'])) {
-            foreach ($fieldset['street']['children'] as $index => $streetLine) {
-                $fieldset['street']['children'][$index]['validation'] = [
-                    'validate-street' => true,
-                    'max_text_length' => self::STREET_MAX_LENGTH,
-                ];
-                $fieldset['street']['children'][$index]['maxlength'] = self::STREET_MAX_LENGTH;
+        foreach ($fieldConfigurations as $fieldName => $config) {
+            if (isset($fieldset[$fieldName])) {
+                $fieldset[$fieldName] = $this->applyFieldValidation(
+                    $fieldset[$fieldName],
+                    $config['validator'],
+                    $config['maxLength']
+                );
             }
         }
 
-        if (isset($fieldset['telephone'])) {
-            $fieldset['telephone']['validation'] = [
-                'validate-phone' => true,
-                'max_text_length' => self::TELEPHONE_MAX_LENGTH,
-            ];
-            $fieldset['telephone']['config']['maxlength'] = self::TELEPHONE_MAX_LENGTH;
+        if (isset($fieldset['street']['children'])) {
+            $fieldset['street']['children'] = $this->applyStreetValidation($fieldset['street']['children']);
         }
 
         return $fieldset;
+    }
+
+    protected function getFieldValidationConfiguration(): array
+    {
+        return [
+            'firstname' => [
+                'validator' => 'validate-name',
+                'maxLength' => self::FIRSTNAME_MAX_LENGTH,
+            ],
+            'lastname' => [
+                'validator' => 'validate-name',
+                'maxLength' => self::LASTNAME_MAX_LENGTH,
+            ],
+            'city' => [
+                'validator' => 'validate-city',
+                'maxLength' => self::CITY_MAX_LENGTH,
+            ],
+            'telephone' => [
+                'validator' => 'validate-phone',
+                'maxLength' => self::TELEPHONE_MAX_LENGTH,
+            ],
+        ];
+    }
+
+    protected function applyFieldValidation(array $field, string $validator, int $maxLength): array
+    {
+        $field['validation'] = [
+            $validator => true,
+            'max_text_length' => $maxLength,
+        ];
+        $field['config']['maxlength'] = $maxLength;
+
+        return $field;
+    }
+
+    protected function applyStreetValidation(array $streetChildren): array
+    {
+        foreach ($streetChildren as $index => $streetLine) {
+            $streetChildren[$index]['validation'] = [
+                'validate-street' => true,
+                'max_text_length' => self::STREET_MAX_LENGTH,
+            ];
+            $streetChildren[$index]['config']['maxlength'] = self::STREET_MAX_LENGTH;
+        }
+
+        return $streetChildren;
     }
 }
