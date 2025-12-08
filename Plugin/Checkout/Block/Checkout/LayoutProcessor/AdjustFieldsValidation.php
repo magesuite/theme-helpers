@@ -67,45 +67,55 @@ class AdjustFieldsValidation
     protected function addAddressFieldsetValidation(array $fieldset): array
     {
         if (isset($fieldset['firstname'])) {
-            $fieldset['firstname']['validation'] = [
-                'validate-name' => true,
-                'max_text_length' => self::FIRSTNAME_MAX_LENGTH,
-            ];
+            $fieldset['firstname']['validation'] = array_merge(
+                $fieldset['firstname']['validation'] ?? [],
+                [
+                    'validate-name' => true,
+                    'max_text_length' => self::FIRSTNAME_MAX_LENGTH,
+                ]
+            );
             $fieldset['firstname']['config']['maxlength'] = self::FIRSTNAME_MAX_LENGTH;
         }
 
         if (isset($fieldset['lastname'])) {
-            $fieldset['lastname']['validation'] = [
-                'validate-name' => true,
-                'max_text_length' => self::LASTNAME_MAX_LENGTH,
-            ];
+            $fieldset['lastname']['validation'] = array_merge(
+                $fieldset['lastname']['validation'] ?? [],
+                [
+                    'validate-name' => true,
+                    'max_text_length' => self::LASTNAME_MAX_LENGTH,
+                ]
+            );
             $fieldset['lastname']['config']['maxlength'] = self::LASTNAME_MAX_LENGTH;
         }
 
         if (isset($fieldset['city'])) {
-            $fieldset['city']['validation'] = [
-                'validate-city' => true,
-                'max_text_length' => self::CITY_MAX_LENGTH,
-            ];
+            $fieldset['city']['validation'] = array_merge(
+                $fieldset['city']['validation'] ?? [],
+                [
+                    'validate-city' => true,
+                    'max_text_length' => self::CITY_MAX_LENGTH,
+                ]
+            );
             $fieldset['city']['config']['maxlength'] = self::CITY_MAX_LENGTH;
         }
 
         if (isset($fieldset['street']['children'])) {
             foreach ($fieldset['street']['children'] as $index => $streetLine) {
-                $streetLine['validation'] = [
-                    'validate-street' => true,
-                    'max_text_length' => self::STREET_MAX_LENGTH,
-                ];
+                $streetLine['validation']['validate-street'] = true;
+                $streetLine['validation']['max_text_length'] = self::STREET_MAX_LENGTH;
                 $streetLine['maxlength'] = self::STREET_MAX_LENGTH;
                 $fieldset['street']['children'][$index] = $streetLine;
             }
         }
 
         if (isset($fieldset['telephone'])) {
-            $fieldset['telephone']['validation'] = [
-                'validate-phone' => true,
-                'max_text_length' => self::TELEPHONE_MAX_LENGTH,
-            ];
+            $fieldset['telephone']['validation'] = array_merge(
+                $fieldset['telephone']['validation'] ?? [],
+                [
+                    'validate-phone' => true,
+                    'max_text_length' => self::TELEPHONE_MAX_LENGTH,
+                ]
+            );
             $fieldset['telephone']['config']['maxlength'] = self::TELEPHONE_MAX_LENGTH;
         }
 
