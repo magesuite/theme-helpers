@@ -101,7 +101,7 @@ class AdjustFieldsValidation
 
         if (isset($fieldset['street']['children'])) {
             foreach ($fieldset['street']['children'] as $index => $streetLine) {
-                $streetLine['validation']['validate-street'] = true;
+                $streetLine['validation']['validate-street-name'] = true;
                 $streetLine['validation']['max_text_length'] = self::STREET_MAX_LENGTH;
                 $streetLine['maxlength'] = self::STREET_MAX_LENGTH;
                 $fieldset['street']['children'][$index] = $streetLine;
