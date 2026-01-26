@@ -1,6 +1,9 @@
 <?xml version="1.0"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
+        <referenceBlock name="head.additional">
+            <block class="MageSuite\ThemeHelpers\Block\SpeculationRules" name="magesuite.speculationrules" ifconfig="speculation_rules/general/is_enabled" />
+        </referenceBlock>
         <referenceContainer name="after.body.start">
             <block name="skip.links" template="MageSuite_ThemeHelpers::skiplinks.phtml" before="-" ifconfig="accessibility/accessibility_settings/skip_links_enabled">
                 <arguments>
