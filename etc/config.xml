@@ -11,37 +11,5 @@
                 <skip_links_enabled>0</skip_links_enabled>
             </accessibility_settings>
         </accessibility>
-        <speculation_rules>
-            <general>
-                <enabled>0</enabled>
-                <configuration>
-<![CDATA[
-{
-    "prefetch": [
-        {
-            "where": {
-                "and": [
-                    { "not": { "selector_matches": "a[href*='/customer/account']" }},
-                    { "not": { "selector_matches": "a[href*='/checkout']" }},
-                    { "or": [
-                        { "selector_matches": ".cs-image-teaser__link" },
-                        { "selector_matches": ".cs-product-tile__name-link" },
-                        { "selector_matches": ".cs-product-tile__thumbnail-link" },
-                        { "selector_matches": ".cs-product-tile__container" },
-                        { "selector_matches": ".cs-offcanvas-navigation__link" },
-                        { "selector_matches": ".cs-navigation__link" },
-                        { "selector_matches": ".cs-footer-links__item a" },
-                        { "selector_matches": ".cs-brand-carousel__slide-link" }
-                    ]}
-                ]
-            },
-          "eagerness": "moderate"
-        }
-    ]
-}
-]]>
-                </configuration>
-            </general>
-        </speculation_rules>
     </default>
 </config>

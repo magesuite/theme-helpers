@@ -6,7 +6,6 @@ namespace MageSuite\ThemeHelpers\Helper;
 
 class Configuration
 {
-    public const XML_PATH_SPECULATION_RULES_CONFIGURATION = 'speculation_rules/general/configuration';
     public const XML_PATH_DESIGN_HEAD_DEFAULT_TITLE = 'design/head/default_title';
     public const XML_PATH_DESIGN_HEAD_TITLE_SUFFIX = 'design/head/title_suffix';
 
@@ -24,12 +23,7 @@ class Configuration
             $storeId
         );
     }
-
-    public function getSpeculationRulesConfiguration(int $storeId): string
-    {
-        return $this->getValue(self::XML_PATH_SPECULATION_RULES_CONFIGURATION, $storeId);
-    }
-
+    
     public function getPagePrefix(int $storeId): string
     {
         $prefix = $this->pageConfig->getTitle()->getShortHeading();
