@@ -1,32 +1,50 @@
 <?php
+/**
+ * @var \Magento\Framework\View\Element\Template $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+
 $triggerText = $block->getTriggerText();
 $title = $block->getTitle();
 $content = $block->getContent();
 $alignment = $block->getAlignment();
+$contentId = $block->getNameInLayout()
+    ? $block->getNameInLayout() . '-content'
+    : uniqid('cs-tooltip-content-');
 ?>
 <?php if ($content) : ?>
-    <div class="cs-tooltip<?php if ($alignment) : ?> cs-tooltip--<?= $alignment;?><?php endif; ?>">
-        <span class="cs-tooltip__trigger">
+    <div class="cs-tooltip<?php if ($alignment) : ?> cs-tooltip--<?= $escaper->escapeHtmlAttr($alignment); ?><?php endif; ?>">
+        <button type="button"
+                class="cs-tooltip__trigger"
+                aria-expanded="false"
+                aria-controls="<?= $escaper->escapeHtmlAttr($contentId); ?>"
+                <?php if (empty($triggerText)) : ?>
+                    aria-label="<?= $escaper->escapeHtmlAttr($title ?: __('Tooltip')); ?>"
+                <?php endif; ?>>
             <?php if (!empty($triggerText)) : ?>
-                <h5 class="cs-tooltip__trigger-title"><?= $triggerText; ?></h5>
+                <span class="cs-tooltip__trigger-title"><?= $escaper->escapeHtml($triggerText); ?></span>
             <?php endif; ?>
-            <?= $this->getLayout()
-                ->createBlock('MageSuite\ThemeHelpers\Block\Icon')
+            <?= /* @noEscape */ $block->getLayout()
+                ->createBlock(\MageSuite\ThemeHelpers\Block\Icon::class)
                 ->setIconUrl('images/icons/tooltip/icon-tooltip-info.svg')
                 ->setCssClass('cs-tooltip__trigger-icon')
                 ->setInlined(true)
                 ->setLazyLoaded(true)
                 ->toHtml();
             ?>
-        </span>
-        <div class="cs-tooltip__content">
+        </button>
+        <div id="<?= $escaper->escapeHtmlAttr($contentId); ?>"
+             class="cs-tooltip__content"
+             aria-hidden="true">
             <div class="cs-tooltip__content-marker">
                 <?php if (!empty($title)) : ?>
-                    <h5 class="cs-tooltip__content-title"><?= $title; ?></h5>
+                    <h5 class="cs-tooltip__content-title"><?= $escaper->escapeHtml($title); ?></h5>
                 <?php endif; ?>
-                <div class="cs-tooltip__content-text"><?= $content; ?></div>
+                <div class="cs-tooltip__content-text"><?= /* @noEscape */ $content; ?></div>
             </div>
-            <span role="button" class="cs-tooltip__close" aria-label="<?= __('Close tooltip'); ?>"></span>
+            <button type="button"
+                    class="cs-tooltip__close"
+                    aria-label="<?= $escaper->escapeHtmlAttr(__('Close tooltip')); ?>"></button>
         </div>
     </div>
 <?php endif; ?>
