@@ -19,7 +19,7 @@ $contentId = $block->getNameInLayout()
                 aria-expanded="false"
                 aria-controls="<?= $escaper->escapeHtmlAttr($contentId); ?>"
                 <?php if (empty($triggerText)) : ?>
-                    aria-label="<?= $escaper->escapeHtmlAttr($title ?: __('Tooltip')); ?>"
+                    aria-label="<?= $escaper->escapeHtmlAttr($block->getTriggerLabel() ?: $title ?: __('Tooltip')); ?>"
                 <?php endif; ?>>
             <?php if (!empty($triggerText)) : ?>
                 <span class="cs-tooltip__trigger-title"><?= $escaper->escapeHtml($triggerText); ?></span>
