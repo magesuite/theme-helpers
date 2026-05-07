@@ -24,6 +24,5 @@
                 </field>
             </group>
         </section>
-        <include path="MageSuite_ThemeHelpers::frontend_performance/speculation_rules.xml"/>
     </system>
 </config>

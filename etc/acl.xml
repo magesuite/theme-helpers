@@ -7,7 +7,6 @@
                     <resource id="Magento_Backend::stores_settings">
                         <resource id="Magento_Config::config">
                             <resource id="MageSuite_ThemeHelpers::accessibility" title="MageSuite Accessibility"/>
-                            <resource id="MageSuite_ThemeHelpers::speculation_rules" title="MageSuite Speculation Rules" />
                         </resource>
                     </resource>
                 </resource>
