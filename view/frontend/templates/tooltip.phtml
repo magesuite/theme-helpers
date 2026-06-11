@@ -8,9 +8,10 @@ $triggerText = $block->getTriggerText();
 $title = $block->getTitle();
 $content = $block->getContent();
 $alignment = $block->getAlignment();
-$contentId = $block->getNameInLayout()
-    ? $block->getNameInLayout() . '-content'
-    : uniqid('cs-tooltip-content-');
+$contentId = $block->getContentId()
+    ?: ($block->getNameInLayout()
+        ? $block->getNameInLayout() . '-content'
+        : uniqid('cs-tooltip-content-'));
 ?>
 <?php if ($content) : ?>
     <div class="cs-tooltip<?php if ($alignment) : ?> cs-tooltip--<?= $escaper->escapeHtmlAttr($alignment); ?><?php endif; ?>">
