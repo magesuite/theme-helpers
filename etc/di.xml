@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Variable\Model\Config\Structure\AvailableVariables">
+        <arguments>
+            <argument name="configPaths" xsi:type="array">
+                <item name="general/locale" xsi:type="array">
+                    <item name="general/locale/code" xsi:type="string">1</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\Mail\Template\TransportBuilder">
+        <plugin name="add_locale_variable_to_email_templates" type="MageSuite\ThemeHelpers\Plugin\Magento\Framework\Mail\Template\TransportBuilder\AddLocaleVariableToEmailTemplates" sortOrder="10"/>
+    </type>
+</config>

@@ -1,23 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace MageSuite\ContentConstructorAdmin\Test\Unit\Helper;
 
 class ImageTypeTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @var \Magento\TestFramework\ObjectManager
-     */
-    protected $objectManager;
+    protected ?\Magento\TestFramework\ObjectManager $objectManager;
+    protected ?\MageSuite\ThemeHelpers\Helper\ImageType $imageType;
 
     /**
-     * @var \MageSuite\ThemeHelpers\Helper\ImageType
+     * @var \Magento\Framework\App\Config\ScopeConfigInterface
      */
-    protected $imageType;
-
-    /**
-     * @var \PHPUnit\Framework\MockObject\MockObject|\Magento\Framework\App\Config\ScopeConfigInterface
-     */
-    protected $scopeConfig;
+    protected ?\PHPUnit\Framework\MockObject\MockObject $scopeConfig;
 
     public function setUp(): void
     {
@@ -35,12 +30,12 @@ class ImageTypeTest extends \PHPUnit\Framework\TestCase
     /**
      * @dataProvider getWebpUrls
      */
-    public function testItResolvesWebpSupport($path, $expectedResult)
+    public function testItResolvesWebpSupport(string $path, bool $expectedResult): void
     {
         $this->assertEquals($expectedResult, $this->imageType->supportsWebp($path));
     }
 
-    public static function getWebpUrls()
+    public static function getWebpUrls(): array
     {
         return [
             ['/var/images/image.jpg', true],
@@ -55,12 +50,12 @@ class ImageTypeTest extends \PHPUnit\Framework\TestCase
     /**
      * @dataProvider getMimeTypeUrls
      */
-    public function testItResolvesMimeTypes($path, $expectedResult)
+    public function testItResolvesMimeTypes(string $path, string $expectedResult): void
     {
         $this->assertEquals($expectedResult, $this->imageType->getMimeType($path));
     }
 
-    public static function getMimeTypeUrls()
+    public static function getMimeTypeUrls(): array
     {
         return [
             ['/var/images/image.jpg', 'image/jpeg'],

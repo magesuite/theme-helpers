@@ -1,6 +1,11 @@
 <?xml version="1.0"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Checkout\Block\Checkout\LayoutProcessor">
+        <plugin name="adjust_fields_validation" type="MageSuite\ThemeHelpers\Plugin\Checkout\Block\Checkout\LayoutProcessor\AdjustFieldsValidation" sortOrder="10" />
+    </type>
+    <type name="Magento\Checkout\Model\DefaultConfigProvider">
+        <plugin name="add_checkout_page_title_to_config" type="MageSuite\ThemeHelpers\Plugin\Checkout\Model\AddCheckoutPageTitleToConfigProvider" sortOrder="20" />
+    </type>
     <type name="Magento\Framework\Config\View">
         <plugin name="cache_config_data"
                 type="MageSuite\ThemeHelpers\Plugin\Magento\Framework\Config\View\CacheConfigData"
