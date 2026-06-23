@@ -6,4 +6,9 @@
     <type name="Magento\Checkout\Model\DefaultConfigProvider">
         <plugin name="add_checkout_page_title_to_config" type="MageSuite\ThemeHelpers\Plugin\Checkout\Model\AddCheckoutPageTitleToConfigProvider" sortOrder="20" />
     </type>
+    <type name="Magento\Framework\Config\View">
+        <plugin name="cache_config_data"
+                type="MageSuite\ThemeHelpers\Plugin\Magento\Framework\Config\View\CacheConfigData"
+                sortOrder="10"/>
+    </type>
 </config>
