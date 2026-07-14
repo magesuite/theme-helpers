@@ -9,7 +9,7 @@
            aria-label="<?= $escaper->escapeHtmlAttr($block->getLabel()); ?>"
            value="<?= $escaper->escapeHtmlAttr($block->getInputInitialValue()); ?>"
            title="<?= $escaper->escapeHtmlAttr($block->getTitle()); ?>"
-           <?= /* @noEscape */ $block->getInputAdditionalParams(); ?> 
+           <?= /* @noEscape */ $block->getInputAdditionalParams(); ?>
     >
 
     <?= /* @noEscape */ $block->getChildHtml(''); ?>

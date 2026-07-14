@@ -23,7 +23,7 @@ class Configuration
             $storeId
         );
     }
-    
+
     public function getPagePrefix(int $storeId): string
     {
         $prefix = $this->pageConfig->getTitle()->getShortHeading();

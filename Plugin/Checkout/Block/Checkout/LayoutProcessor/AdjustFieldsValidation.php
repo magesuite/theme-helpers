@@ -38,7 +38,7 @@ class AdjustFieldsValidation
 
         return $this->arrayManager->set($path, $jsLayout, $this->addAddressFieldsetValidation($fieldset));
     }
-    
+
     protected function addValidationToBillingAddress(array &$jsLayout): array
     {
         $paymentMethodsPath = 'components/checkout/children/steps/children/billing-step/children/payment/children/payments-list/children';

@@ -27,9 +27,7 @@ class ImageTypeTest extends \PHPUnit\Framework\TestCase
         $this->imageType = $this->objectManager->create(\MageSuite\ThemeHelpers\Helper\ImageType::class, ['scopeConfig' => $this->scopeConfig]);
     }
 
-    /**
-     * @dataProvider getWebpUrls
-     */
+    #[\PHPUnit\Framework\Attributes\DataProvider('getWebpUrls')]
     public function testItResolvesWebpSupport(string $path, bool $expectedResult): void
     {
         $this->assertEquals($expectedResult, $this->imageType->supportsWebp($path));
@@ -47,9 +45,7 @@ class ImageTypeTest extends \PHPUnit\Framework\TestCase
         ];
     }
 
-    /**
-     * @dataProvider getMimeTypeUrls
-     */
+    #[\PHPUnit\Framework\Attributes\DataProvider('getMimeTypeUrls')]
     public function testItResolvesMimeTypes(string $path, string $expectedResult): void
     {
         $this->assertEquals($expectedResult, $this->imageType->getMimeType($path));
