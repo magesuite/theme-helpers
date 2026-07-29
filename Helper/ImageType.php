@@ -4,10 +4,6 @@ namespace MageSuite\ThemeHelpers\Helper;
 
 class ImageType extends \Magento\Framework\App\Helper\AbstractHelper
 {
-    const WEBP_SUPPORTED_CONFIG_PATH = 'web/image_urls_processing/webp_supported';
-
-    const WEBP_SUPPORTED_EXTENSIONS = ['jpg', 'jpeg', 'png'];
-
     const EXTENSION_TO_MIME_TYPE = [
         'ai'      => 'application/postscript',
         'aif'     => 'audio/x-aiff',
@@ -167,26 +163,6 @@ class ImageType extends \Magento\Framework\App\Helper\AbstractHelper
         'xyz'     => 'chemical/x-xyz',
         'zip'     => 'application/zip'
     ];
-
-    public function __construct(
-        \Magento\Framework\App\Helper\Context $context,
-        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
-    ) {
-        parent::__construct($context);
-
-        $this->scopeConfig = $scopeConfig;
-    }
-
-    public function supportsWebp($path)
-    {
-        if (!$this->scopeConfig->getValue(self::WEBP_SUPPORTED_CONFIG_PATH)) {
-            return false;
-        }
-
-        $extension = $this->getExtension($path);
-
-        return in_array($extension, self::WEBP_SUPPORTED_EXTENSIONS);
-    }
 
     public function getMimeType($path)
     {
