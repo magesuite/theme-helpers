@@ -14,5 +14,49 @@
                 </field>
             </group>
         </section>
+        <section id="view_transition" translate="label" type="text" sortOrder="920" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>View Transition</label>
+            <tab>magesuite</tab>
+            <resource>MageSuite_ThemeHelpers::view_transition</resource>
+            <group id="general" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="is_enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Is Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Cross-fade between pages via the <a href="https://developer.mozilla.org/en-US/docs/Web/API/View_Transitions_API" target="_blank">View Transitions API</a>. Skipped for reduced motion.]]></comment>
+                </field>
+            </group>
+            <group id="product_image_transition" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Product Image Transition</label>
+                <field id="is_enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Is Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Morph the tile image into the PDP gallery. Requires the General switch.</comment>
+                </field>
+                <field id="gallery_selector" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Gallery Selector (on enter)</label>
+                    <comment>PDP image at page load.</comment>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="gallery_leave_selector" translate="label comment" type="text" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Gallery Selector (initialised)</label>
+                    <comment>Optional. PDP image once the JS gallery has initialised. The animation is handed over to it before the placeholder image is removed.</comment>
+                </field>
+                <field id="tile_link_selector" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Product Tile Link Selector</label>
+                    <comment><![CDATA[Tile link (the <code>&lt;a&gt;</code> with the href). Exclude hidden duplicates (e.g. tiles inside a closed menu flyout) with <code>:not()</code>, otherwise the first match in the DOM wins and a hidden one disables the morph.]]></comment>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="tile_image_selector" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Product Tile Image Selector</label>
+                    <comment>Optional. Image inside the tile link.</comment>
+                </field>
+                <field id="duration" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Duration (ms)</label>
+                    <comment>Empty = default (~250 ms).</comment>
+                    <validate>validate-digits</validate>
+                </field>
+            </group>
+        </section>
     </system>
 </config>
