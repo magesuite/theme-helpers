@@ -6,5 +6,18 @@
                 <skip_links_enabled>0</skip_links_enabled>
             </accessibility_settings>
         </accessibility>
+        <view_transition>
+            <general>
+                <is_enabled>0</is_enabled>
+            </general>
+            <product_image_transition>
+                <is_enabled>0</is_enabled>
+                <gallery_selector>.cs-product-gallery__placeholder-img</gallery_selector>
+                <gallery_leave_selector>.cs-page-product__gallery .fotorama__active .fotorama__img</gallery_leave_selector>
+                <tile_link_selector>.cs-product-tile__thumbnail-link:not(.cs-navigation__flyout *)</tile_link_selector>
+                <tile_image_selector>.cs-product-tile__img</tile_image_selector>
+                <duration/>
+            </product_image_transition>
+        </view_transition>
     </default>
 </config>

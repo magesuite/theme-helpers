@@ -7,6 +7,7 @@
                     <resource id="Magento_Backend::stores_settings">
                         <resource id="Magento_Config::config">
                             <resource id="MageSuite_ThemeHelpers::accessibility" title="MageSuite Accessibility"/>
+                            <resource id="MageSuite_ThemeHelpers::view_transition" title="MageSuite View Transition"/>
                         </resource>
                     </resource>
                 </resource>
