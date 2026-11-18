@@ -2,20 +2,22 @@
 
 declare(strict_types=1);
 
-namespace MageSuite\ContentConstructorAdmin\Test\Unit\Helper;
+namespace MageSuite\ThemeHelpers\Test\Unit\Helper;
 
 class ImageTypeTest extends \PHPUnit\Framework\TestCase
 {
-    protected ?\Magento\TestFramework\ObjectManager $objectManager;
     protected ?\MageSuite\ThemeHelpers\Helper\ImageType $imageType;
 
     public function setUp(): void
     {
-        $this->objectManager = \Magento\TestFramework\ObjectManager::getInstance();
-
-        $this->imageType = $this->objectManager->create(\MageSuite\ThemeHelpers\Helper\ImageType::class);
+        $this->imageType = new \MageSuite\ThemeHelpers\Helper\ImageType(
+            $this->createStub(\Magento\Framework\App\Helper\Context::class)
+        );
     }
 
+    /**
+     * @dataProvider getMimeTypeUrls
+     */
     #[\PHPUnit\Framework\Attributes\DataProvider('getMimeTypeUrls')]
     public function testItResolvesMimeTypes(string $path, string $expectedResult): void
     {
