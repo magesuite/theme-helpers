@@ -19,12 +19,13 @@ class CacheableBlock extends \Magento\Cms\Block\Block
     public function __construct(
         \Magento\Framework\View\Element\Context $context,
         \Magento\Cms\Model\Template\FilterProvider $filterProvider,
+        \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Magento\Cms\Model\BlockFactory $blockFactory,
         \Magento\Cms\Model\ResourceModel\Block $blockResource,
         array $data = []
     ) {
         $this->blockResource = $blockResource;
-        parent::__construct($context, $filterProvider, $blockFactory, $data);
+        parent::__construct($context, $filterProvider, $storeManager, $blockFactory, $data);
     }
 
     protected function _toHtml()
