@@ -39,8 +39,8 @@ if ($iconPath && $shouldInline && !$shouldLazyLoad && !$isRemoteUrl) {
 
     if ($shouldLazyLoad || $shouldInline) : ?>
         <img
-            class="<?= $cssClasses; ?>"
-            src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+            class="<?= /** @noEscape */ $cssClasses; ?>"
+            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
             data-src="<?= $escaper->escapeUrl($iconUrl) ?>"
             alt="<?= $escaper->escapeHtmlAttr($altText) ?>"
             <?php if ($width && $height) : ?>width="<?= $escaper->escapeHtmlAttr($width) ?>"<?php endif; ?>
